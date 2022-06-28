@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.test1.repository.AccountMapper">
+<!--    <cache type="org.mybatis.caches.ehcache.EhcacheCache">
+        &lt;!&ndash; 缓存创建之后，最后一次访问缓存的时间至缓存失效的时间间隔 &ndash;&gt;
+        <property name="timeToIdleSeconds" value="3600"/>
+        &lt;!&ndash; 缓存自创建时间起至失效的时间间隔 &ndash;&gt;
+        <property name="timeToLiveSeconds" value="3600"/>
+        &lt;!&ndash; 缓存回收策略，LRU表示移除近期使用最少的对象 &ndash;&gt;
+        <property name="memoryStoreEvictionPolicy" value="LRU"/>
+    </cache>-->
+    <insert id="save" parameterType="com.example.test1.model.Account">
+        insert into account(user_name,pass_word,age) values(#{userName},#{passWord},#{age})
+    </insert>
+
+    <select id="findAll" resultType="com.example.test1.model.Account">
+        select * from account
+    </select>
+    <select id="findById" parameterType="long" resultType="com.example.test1.model.Account">
+        select * from account where id = #{id}
+    </select>
+    <select id="findByUserName" parameterType="java.lang.String" resultType="com.example.test1.model.Account">
+        select * from account where user_name = #{userName}
+    </select>
+
+    
+    <!--<update id="update" parameterType="com.example.test1.model.Account">-->
+        <!--update account set userName = #{userName},password = #{password},age = #{age} where id = #{id}-->
+    <!--</update>-->
+
+  <!--  <update id="update" parameterType="com.example.test1.model.Account">
+        update account
+        <set>
+            <if test="userName!=null">
+                userName = #{userName},
+            </if>
+            <if test="password!=null">
+                password = #{password},
+            </if>
+            <if test="age!=0">
+                age = #{age}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="long">
+        delete from account where id = #{id}
+    </delete>
+    <select id="findAll" resultType="com.example.test1.model.Account">
+        select * from account
+    </select>
+    <select id="findById" parameterType="long" resultType="com.example.test1.model.Account">
+        select * from account where id = #{id}
+    </select>
+    <select id="findByName" parameterType="java.lang.String" resultType="com.example.test1.model.Account">
+        select * from account where userName = #{userName}
+    </select>
+    <select id="findById2" parameterType="java.lang.Long" resultType="com.example.test1.model.Account">
+        select * from account where id = #{id}
+    </select>
+    <select id="findByNameAndAge" resultType="com.example.test1.model.Account">
+        select * from account where userName = #{arg0} and age = #{arg1}
+    </select>
+    <select id="count" resultType="int">
+        select count(id) from account
+    </select>
+    <select id="count2" resultType="java.lang.Integer">
+        select count(id) from account
+    </select>
+    <select id="findNameById" resultType="java.lang.String">
+        select userName from account where id = #{id}
+    </select>
+-->
+    <!--<select id="findByAccount" parameterType="com.example.test1.model.Account" resultType="com.example.test1.model.Account">-->
+        <!--select * from account-->
+        <!--<where>-->
+            <!--<if test="id!=0">-->
+                <!--id = #{id}-->
+            <!--</if>-->
+            <!--<if test="userName!=null">-->
+                <!--and userName = #{userName}-->
+            <!--</if>-->
+            <!--<if test="password!=null">-->
+                <!--and password = #{password}-->
+            <!--</if>-->
+            <!--<if test="age!=0">-->
+                <!--and age = #{age}-->
+            <!--</if>-->
+        <!--</where>-->
+    <!--</select>-->
+
+    <!--<select id="findByAccount" parameterType="com.example.test1.model.Account" resultType="com.example.test1.model.Account">-->
+        <!--select * from account-->
+        <!--<where>-->
+            <!--<choose>-->
+                <!--<when test="id!=0">-->
+                    <!--id = #{id}-->
+                <!--</when>-->
+                <!--<when test="userName!=null">-->
+                    <!--and userName = #{userName}-->
+                <!--</when>-->
+                <!--<when test="password!=null">-->
+                    <!--and password = #{password}-->
+                <!--</when>-->
+                <!--<when test="age!=0">-->
+                    <!--and age = #{age}-->
+                <!--</when>-->
+            <!--</choose>-->
+        <!--</where>-->
+    <!--</select>-->
+
+  <!--  <select id="findByAccount" parameterType="com.example.test1.model.Account" resultType="com.example.test1.model.Account">
+        select * from account
+        <trim prefix="where" prefixOverrides="and">
+            <if test="id!=0">
+                id = #{id}
+            </if>
+            <if test="userName!=null">
+                and userName = #{userName}
+            </if>
+            <if test="password!=null">
+                and password = #{password}
+            </if>
+            <if test="age!=0">
+                and age = #{age}
+            </if>
+        </trim>
+    </select>
+
+    <select id="findByIds" parameterType="com.example.test1.model.Account" resultType="com.example.test1.model.Account">
+          select * from account
+          <where>
+              <foreach collection="ids" open="id in (" close=")" item="id" separator=",">
+                  #{id}
+              </foreach>
+          </where>
+    </select>-->
+</mapper>

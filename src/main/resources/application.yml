@@ -1,0 +1,32 @@
+
+
+
+server:
+  port: 8083
+
+spring:
+  datasource:
+    username: root
+    password: Qwer@123
+    url: jdbc:mysql://localhost:3306/springboot?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=true&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+  configuration:
+    #下划线转驼峰
+    map-underscore-to-camel-case: true
+#  type-aliases-package: com.example.test1.model
+
+#showSql
+logging:
+  config: src/main/resources/log4j2-spring.xml
+  level:
+
+    #    root: debug
+    com:
+      example: debug
+#        mapper : debug
+#      zaxxer:
+#        hikari:
+#          HikariDataSource: debug

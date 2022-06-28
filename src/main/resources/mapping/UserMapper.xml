@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.test1.repository.UserMapper">
+
+<!--    <resultMap id="BaseResultMap" type="com.example.entity.User">-->
+<!--        <result column="id" jdbcType="INTEGER" property="id" />-->
+<!--        <result column="userName" jdbcType="VARCHAR" property="userName" />-->
+<!--        <result column="passWord" jdbcType="VARCHAR" property="passWord" />-->
+<!--        <result column="realName" jdbcType="VARCHAR" property="realName" />-->
+<!--    </resultMap>-->
+
+    <select id="Sel" resultType="com.example.test1.model.User">
+        select * from user where id = #{id}
+    </select>
+
+    <insert id="save" parameterType="com.example.test1.model.User">
+        insert into user(userName,passWord,realName) values(#{userName},#{passWord},#{realName})
+    </insert>
+
+<!--    <insert id="save" parameterType="com.example.test1.model.User">
+        insert into user1(user_name,pass_word,real_name) values(#{userName},#{passWord},#{realName})
+    </insert>-->
+
+    <update id="update" parameterType="com.example.test1.model.User">
+    update user set userName = #{userName},passWord = #{passWord},realName = #{realName} where id = #{id}
+    </update>
+     
+    <update id="updateMap">
+        <foreach collection="userMap" item="value" index="key" separator=";">
+            update user set
+            userName = #{value.userName},
+            passWord = #{value.passWord},
+            realName = #{value.realName}
+            where id = #{key}
+        </foreach>
+
+
+    </update>
+
+    <delete id="deleteById" parameterType="int">
+        delete from user where id = #{id}
+    </delete>
+
+    <select id="findByNameAndPassWord" resultType="com.example.test1.model.User">
+        select * from user where userName = #{param1} and passWord = #{param2}
+    </select>
+
+
+    <select id="findAll" resultType="com.example.test1.model.User">
+        select * from user
+    </select>
+    <!--<insert id="insert" parameterType="com.example.entity.User">
+        insert into User (userId, userName, phone,
+        sex)
+        values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+        #{sex,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.example.entity.User">
+        insert into User
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                userId,
+            </if>
+            <if test="username != null">
+                userName,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="findAllUser" resultType="com.example.entity.User">
+        select * from User
+    </select>-->
+
+
+</mapper>
